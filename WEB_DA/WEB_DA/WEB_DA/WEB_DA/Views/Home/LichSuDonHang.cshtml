@@ -1,0 +1,41 @@
+﻿@{
+    ViewBag.Title = "LichSuDonHang";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+@model IEnumerable<WEB_DA.Models.DonDatHang>
+
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Lịch Sử Đơn Hàng</h2>
+
+    <table class="table table-striped table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th>Mã Đơn Hàng</th>
+                <th>Ngày Đặt</th>
+                <th>Tổng Số Lượng</th>
+                <th>Tổng Tiền</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var donHang in Model)
+            {
+                <tr>
+                    <td>@donHang.MaDonHang</td>
+                    <td>
+                        @if (donHang.NgayDatHang.HasValue)
+                        {
+                            @donHang.NgayDatHang.Value.ToString("dd/MM/yyyy")
+                        }
+                        else
+                        {
+                            <span class="text-muted">Không có dữ liệu</span>
+                        }
+                    </td>
+                    <td>@donHang.TongSLHang</td>
+                    <td>@String.Format("{0:#,###}", donHang.TongThanhTien) VND</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

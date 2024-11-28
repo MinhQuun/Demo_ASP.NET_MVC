@@ -1,0 +1,73 @@
+﻿@{
+    ViewBag.Title = "Xem giỏ hàng";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+@using WEB_DA.Models;
+
+<h2>Thông tin giỏ hàng đã chọn</h2>
+<table class="table">
+    <tr>
+        <th>Mã Sản Phẩm</th>
+        <th>Tên Sản Phẩm</th>
+        <th>Ảnh</th>
+        <th></th>
+        <th>Số lượng</th>
+        <th></th>
+        <th>Đơn giá</th>
+        <th>Thành tiền</th>
+        <th></th>
+        <th></th>
+        <th></th>
+    </tr>
+    @foreach (CartItem item in Model.list)
+    {
+        <tr>
+            <td>@item.MaSP</td>
+            <td>@item.TenSP</td>
+            <td><img src="/Hinh/@item.AnhBia" class="w-25" alt="Ảnh sản phẩm" /></td>
+            <td>
+                @using (Html.BeginForm("GiamMatHang", "Home", FormMethod.Post, new { @class = "d-inline" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.Hidden("id", item.MaSP)
+                    <button type="submit" class="btn btn-outline-primary">-</button>
+                }
+                </td>
+                <td>
+                @item.SoLuong
+                    </td>
+<td>
+                @using (Html.BeginForm("TangMatHang", "Home", FormMethod.Post, new { @class = "d-inline" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.Hidden("id", item.MaSP)
+                    <button type="submit" class="btn btn-outline-primary">+</button>
+                }
+            </td>
+
+            <td>@String.Format("{0:#,###}", item.DonGia) VND</td>
+            <td>@String.Format("{0:#,###}", item.ThanhTien) VND</td>
+            <td><a href="/Home/Detail/@item.MaSP">Chi tiết sản phẩm</a></td>
+            <td><a href="/Home/RemoveFromCart/@item.MaSP" class="text-danger">Xóa</a></td>
+        </tr>
+    }
+    <tr>
+        <td><b>Tổng Số lượng</b></td>
+        <td><b>Tổng Thành tiền</b></td>
+        <td></td>
+    </tr>
+    @{
+        if (Session["GioHang"] != null)
+        {
+            var gio = Session["GioHang"] as GioHang;
+            <tr>
+                <td>@gio.TongSLHang()</td>
+              
+                <td>@String.Format("{0:#,###}", gio.TongThanhTien()) VND</td>
+                <td>
+                    <a href="/Home/DatHang" class="btn btn-outline-success">Đặt hàng</a>
+                </td>
+            </tr>
+        }
+    }
+</table>

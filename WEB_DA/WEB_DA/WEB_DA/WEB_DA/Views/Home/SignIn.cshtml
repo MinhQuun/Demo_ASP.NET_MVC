@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "SignIn";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/StyleSheet1.css" rel="stylesheet" />
+
+
+<body class="text-center">
+    <main class="form-signin">
+        <form action="SignIn" method="post" name="dang-nhap">
+            <<img src="~/HinhAnh/everonvn-vn.jpg" alt="" width="72" height="57" />
+            <h1 class="h3 mb-3 fw-normal">Đăng Nhập</h1>
+
+            <div class="form-floating">
+                <input type="text" class="form-control" name="txtName" placeholder="Số Điện Thoại" required>
+                <label for="floatingInput">Số Điện Thoại</label>
+            </div>
+            <div class="form-floating">
+                <input type="password" class="form-control" name="txtPass" placeholder="Mật Khẩu" required>
+                <label for="floatingPassword">Mật Khẩu</label>
+            </div>
+
+            <button class="w-100 btn btn-lg btn-primary" type="submit">Đăng Nhập</button>
+        </form>
+    </main>
+</body>

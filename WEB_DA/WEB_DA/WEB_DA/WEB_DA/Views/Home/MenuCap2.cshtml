@@ -1,0 +1,7 @@
+﻿@using WEB_DA.Models;
+@model List<Loai>
+
+@foreach (var l in Model)
+{
+    <a class="dropdown-item" href="/Home/LocDL_Theoloai/?mdm=@l.MaLoaiSP">@l.TenLoai</a>
+}

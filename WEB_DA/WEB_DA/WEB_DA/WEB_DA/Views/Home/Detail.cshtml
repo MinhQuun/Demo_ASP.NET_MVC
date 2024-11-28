@@ -1,0 +1,35 @@
+﻿@model WEB_DA.Models.SanPham
+
+@{
+    ViewBag.Title = "Chi tiết sản phẩm";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<div class="container my-4">
+    <h2 class="text-center mb-4">Chi Tiết Sản Phẩm</h2>
+    <div class="row">
+        <div class="col-md-6 d-flex justify-content-center align-items-center">
+            <img style="width: 100%; max-width: 300px; height: auto;"
+                 src="/Hinh/@Model.HinhDaiDien" alt="Hình đại diện sản phẩm" />
+        </div>
+        <div class="col-md-6">
+            <div class="mb-3">
+                <h4>@Model.TenSanPham</h4>
+                <p class="text-muted">Giá: @String.Format("{0:#,###}", Model.DonGia) VND</p>
+            </div>
+            <div class="mb-3">
+                <h5>Mô Tả:</h5>
+                <p>@Html.Raw(Model.MoTa)</p>
+            </div>
+            <div class="mb-3">
+                <p><strong>Nhà Sản Xuất:</strong> @Model.NhaSanXuat</p>
+                <p><strong>Loại Sản Phẩm:</strong> @Model.MaLoaiSP</p>
+            </div>
+        </div>
+    </div>
+    <div class="text-center mt-4">
+        <p>
+            <a href="#" class="btn btn-outline-success" onclick="window.history.back(); return false;">Trở lại danh sách</a>
+        </p>    
+    </div>
+</div>
